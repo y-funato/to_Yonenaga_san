@@ -1,0 +1,19 @@
+<% todofuken = Todofuken.all %>
+
+  <select method="post">
+    <% todofuken.each do |pref|%>
+      <option><%= pref.name %></option>
+    <% end %>
+  </select>
+
+  <p><input type="submit" value="天気情報を見る" /></p>
+
+
+
+
+
+
+
+  <%= form_with(model: Todofuken.new) %>
+
+

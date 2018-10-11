@@ -1,0 +1,4 @@
+class Todofuken < ApplicationRecord
+
+
+end

@@ -1,0 +1,91 @@
+<!DOCTYPE>
+<html>
+  <head>
+   <title></title>
+  </head>
+
+<body>
+<% require "json" %>
+<% require 'time'%>
+<% require "open-uri" %>
+
+
+
+<% uri = "https://api.darksky.net/forecast/080fa7f90e3e587b2de824aa0bcc0dd4/" %>
+<% latitude = 35.6895 %>
+<% longitude = 139.6917 %>
+
+<% url = "#{uri}#{latitude},#{longitude}" %>
+
+<% response = open(url).read %>
+<% response_precip_hour = open("#{url}?extend=hourly").read %>
+
+<% weather = JSON.parse(response) %>
+<% precip_hour = JSON.parse(response_precip_hour) %>
+
+<p> 
+<% today_weather = weather["currently"]["icon"] %>
+<%= "今日の天気:#{today_weather}" %>
+</p>
+
+<p>
+<% temp_high = ((weather["daily"]["data"][0]["apparentTemperatureMax"] -32) / 1.8).floor(2) %>
+<%= "今日の最高気温:#{temp_high}度" %>
+<% temp_low = ((weather["daily"]["data"][0]["apparentTemperatureMin"] -32) / 1.8).floor(2)%>
+<%= "今日の最低気温:#{temp_low}度" %>
+</p>
+
+<p>
+<% precip = (weather["daily"]["data"][0]["precipProbability"])*100%>
+<%= "今日の降水確率:#{precip}%" %>
+</p>
+
+<p>
+<% hour_num = [4,8,12,16,20,24] %>
+<% res_hour = [] %>
+<% hour_num.each do |num| %>
+<% res_hour << precip_hour["hourly"]["data"][num]["precipProbability"] %>
+<% end %>
+
+<% res_hour.each.with_index(1) do |x, i| %>
+<% hour = i*4 %>
+<% per = x*100 %>
+<%= "//#{hour}時間後の降水確率:#{per}%\n" %>
+<% end %>
+</p>
+
+
+<p>
+<% unixtime_yesterday = (Date.today-1).to_s %>
+<% unixtime_yesterday = Time.parse(unixtime_yesterday).to_i %>
+<% response_yesterday = open("#{url},#{unixtime_yesterday}").read %>
+<% weather_yesterday = JSON.parse(response_yesterday) %>
+<% yesterday_weather = weather_yesterday["currently"]["icon"] %>
+<%= "昨日の天気:#{yesterday_weather}"%>
+</p>
+
+<p>
+<% unixtime_tomorrow = (Date.today+1).to_s %>
+<% unixtime_tomorrow = Time.parse(unixtime_tomorrow).to_i %>
+<% response_tomorrow = open("#{url},#{unixtime_tomorrow}").read %>
+<% weather_tomorrow = JSON.parse(response_tomorrow) %>
+<% tomorrow_weather = weather_tomorrow["currently"]["icon"] %>
+<%= "明日の天気:#{tomorrow_weather}"%>
+</p>
+
+<p>
+<% for num in 1..7 do %>
+<% unixtime_week = (Date.today+num).to_s %>
+<% unixtime_week = Time.parse(unixtime_week).to_i %>
+<% response_week = open("#{url},#{unixtime_week}").read %>
+<% weather_week = JSON.parse(response_week) %>
+<% week_weather = weather_week["currently"]["icon"] %>
+<%= "#{num}日後の天気"%>
+<%= "#{week_weather}"%>
+<% end %>   
+</p>
+
+
+</body>
+</html>
+
