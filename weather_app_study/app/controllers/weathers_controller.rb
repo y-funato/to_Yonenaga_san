@@ -37,13 +37,13 @@ class WeathersController < ApplicationController
     precip_hour = JSON.parse(response_precip_hour)
 
     #今日の天気情報を取得
-    def fahrenheit_to_temperature(temperature)
+    def fahrenheit_to_celsius(temperature)
       ((temperature-32)/1.8).floor(2)
     end
 
     @today_weather = weather["currently"]["icon"]
-    @temp_low = fahrenheit_to_temperature(weather["daily"]["data"][0]["apparentTemperatureMin"])
-    @temp_high = fahrenheit_to_temperature(weather["daily"]["data"][0]["apparentTemperatureMax"])
+    @temp_low = fahrenheit_to_celsius(weather["daily"]["data"][0]["apparentTemperatureMin"])
+    @temp_high =fahrenheit_to_celsius(weather["daily"]["data"][0]["apparentTemperatureMax"])
     @precip = ((weather["daily"]["data"][0]["precipProbability"])*100).floor(2)
 
     #4時間ごとの天気
