@@ -28,6 +28,8 @@ class WeathersController < ApplicationController
     #お天気APIに経度と緯度を代入して、情報を取得
     uri = DARK_SKY_URI
     url = "#{uri}#{latitude},#{longitude}"
+    @url = "#{uri}#{latitude},#{longitude}"
+    
     response = open(url).read
     response_precip_hour = open("#{url}?extend=hourly").read
 
@@ -36,10 +38,14 @@ class WeathersController < ApplicationController
 
     #今日の天気情報を取得
     @today_weather = weather["currently"]["icon"]
-    @temp_high = ((weather["daily"]["data"][0]["apparentTemperatureMax"] -32)/1.8).floor(2)
-    @temp_low = ((weather["daily"]["data"][0]["apparentTemperatureMin"] -32) /1.8).floor(2)
-    precip = (weather["daily"]["data"][0]["precipProbability"])*100
-    @precip = precip.floor(2)
+    
+    def fahrenheit(temperature)
+      ((temperature-32)/1.8).floor(2)
+    end
+
+    @temp_low = fahrenheit(weather["daily"]["data"][0]["apparentTemperatureMin"])
+    @temp_high = fahrenheit(weather["daily"]["data"][0]["apparentTemperatureMax"])
+    @precip = ((weather["daily"]["data"][0]["precipProbability"])*100).floor(2)
 
  
     #4時間ごとの天気
@@ -59,19 +65,18 @@ class WeathersController < ApplicationController
     end
     @res_4hour = test
 
-    #明日の天気を取得
-    unixtime_tomorrow = (Date.today+1).to_s
-    unixtime_tomorrow = Time.parse(unixtime_tomorrow).to_i
-    response_tomorrow = open("#{url},#{unixtime_tomorrow}").read
-    weather_tomorrow = JSON.parse(response_tomorrow)
-    @tomorrow_weather = weather_tomorrow["currently"]["icon"]
+   #前日/翌日の天気
+   def unixtime_wether(num)
+     unixtime = (Date.today + num).to_s
+     unixtime = Time.parse(unixtime).to_i
+     response = open("#{@url},#{unixtime}").read
+     weather = JSON.parse(response)
+     weather["currently"]["icon"]
+   end
 
-   #昨日の天気
-   unixtime_yesterday = (Date.today-1).to_s
-   unixtime_yesterday = Time.parse(unixtime_yesterday).to_i
-   response_yesterday = open("#{url},#{unixtime_yesterday}").read
-   weather_yesterday = JSON.parse(response_yesterday)
-   @yesterday_weather = weather_yesterday["currently"]["icon"]
+   @yesterday_weather = unixtime_wether(-1)
+   @tomorrow_weather = unixtime_wether(1)
+
 
    #1週間の天気
    week = []
