@@ -1,0 +1,7 @@
+<h1>お天気エリア検索</h1>
+
+<%= form_tag weathers_info_path, method: 'get' do %>
+  <%= label_tag :address, 'エリアを入力してください' %><br>
+  <%= text_field_tag :address %><br>
+  <%= submit_tag '検索' %>
+<% end %>

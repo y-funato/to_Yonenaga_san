@@ -1,0 +1,27 @@
+<h1><%= @address %>のお天気情報</h1>
+<h2><%= "今日の天気:#{@today_weather}" %></h2>
+<%= @weather_img %>
+
+<% if @today_weather.include?("sun")%>
+   <%= image_tag 'sunny.png' %>
+<% elsif @today_weather.include?("clo") %>
+   <%= image_tag 'cloudy.png' %>
+<% elsif @today_weather.include?("rai") %>
+   <%= image_tag 'rainy.png'%>
+<% else %>
+    <h2>no_img</h2>
+<% end %>
+
+<br>
+
+<%= link_to '他エリアのお天気情報を見る', weathers_path %>
+
+<h3><%= "今日の最高気温:#{@temp_high}度" %></h3>
+<h3><%= "今日の最低気温:#{@temp_low}度" %></h3>
+
+<h3><%= "今日の降水確率:#{@precip}%" %></h3>
+<h4><%= @res_4hour.join(",") %><h4>
+
+<h2><%= "明日の天気:#{@tomorrow_weather}"%><h2>
+<h2><%= "前日の天気:#{@yesterday_weather}"%><h2>
+<h4><%= @week.join(",") %></h4>
