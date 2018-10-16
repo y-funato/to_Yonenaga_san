@@ -37,17 +37,15 @@ class WeathersController < ApplicationController
     precip_hour = JSON.parse(response_precip_hour)
 
     #今日の天気情報を取得
-    @today_weather = weather["currently"]["icon"]
-    
-    def fahrenheit(temperature)
+    def fahrenheit_to_temperature(temperature)
       ((temperature-32)/1.8).floor(2)
     end
 
-    @temp_low = fahrenheit(weather["daily"]["data"][0]["apparentTemperatureMin"])
-    @temp_high = fahrenheit(weather["daily"]["data"][0]["apparentTemperatureMax"])
+    @today_weather = weather["currently"]["icon"]
+    @temp_low = fahrenheit_to_temperature(weather["daily"]["data"][0]["apparentTemperatureMin"])
+    @temp_high = fahrenheit_to_temperature(weather["daily"]["data"][0]["apparentTemperatureMax"])
     @precip = ((weather["daily"]["data"][0]["precipProbability"])*100).floor(2)
 
- 
     #4時間ごとの天気
     hour_num = [4,8,12,16,20,24]
     res_hour = []
@@ -66,16 +64,21 @@ class WeathersController < ApplicationController
     @res_4hour = test
 
    #前日/翌日の天気
-   def unixtime_wether(num)
-     unixtime = (Date.today + num).to_s
-     unixtime = Time.parse(unixtime).to_i
+   def weather_of_another_day(offset)
+     yesterday_or_tomorrow = (Date.today + offset).to_s
+     unixtime = Time.parse(yesterday_or_tomorrow).to_i
      response = open("#{@url},#{unixtime}").read
      weather = JSON.parse(response)
      weather["currently"]["icon"]
    end
 
-   @yesterday_weather = unixtime_wether(-1)
-   @tomorrow_weather = unixtime_wether(1)
+   yesterday = -1
+   tomorrow = 1
+   yesterday.freeze
+   tomorrow.freeze
+
+   @yesterday_weather = weather_of_another_day(yesterday)
+   @tomorrow_weather = weather_of_another_day(tomorrow)
 
 
    #1週間の天気
