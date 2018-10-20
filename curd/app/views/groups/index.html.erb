@@ -1,0 +1,24 @@
+<h1>Listing groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= link_to 'Show', company_group_path(@company, group) %></td>
+        <td><%= link_to 'Edit', edit_company_group_path(@company, group) %></td>
+        <td><%= link_to 'Destroy', company_group_path(@company, group), method: :delete, data: { confirm: '削除してもいいですか?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group', new_company_group_path(@company) %>

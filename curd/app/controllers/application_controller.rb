@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_group
-    group_id = params[:group_id] ? params[:groups_id] : params[:id]
+    group_id = params[:group_id] ? params[:group_id] : params[:id]
     @group = @company.groups.find(group_id)
   end
 
