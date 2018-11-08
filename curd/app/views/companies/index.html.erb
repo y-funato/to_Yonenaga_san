@@ -1,13 +1,13 @@
-<h1>Listing companies</h1>
+<h1>会社一覧</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Tel</th>
-      <th>Fax</th>
-      <th>Url</th>
+      <th>会社名</th>
+      <th>住所</th>
+      <th>電話番号</th>
+      <th>ファックス</th>
+      <th>Webサイト</th>
       <th></th>
       <th></th>
       <th></th>
@@ -22,13 +22,13 @@
       <td><%= company.tel %></td>
       <td><%= company.fax %></td>
       <td><%= company.url %></td>
-      <td><%= link_to 'Show', company %></td>
-      <td><%= link_to 'Edit', edit_company_path(company) %></td>
-      <td><%= link_to 'Destroy', company, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <td><%= link_to '詳細', company, class:'btn btn-default' %></td>
+      <td><%= link_to '編集', edit_company_path(company), class:'btn btn-default' %></td>
+      <td><%= link_to '削除', company, method: :delete, data: {confirm: '削除しますか?'} , class:'btn btn-default'%></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'New company', new_company_path %>
+<%= link_to '会社を新規登録する', new_company_path, class:'btn btn-default' %>

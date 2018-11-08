@@ -1,0 +1,36 @@
+<h1>名刺一覧(<%= @group.name %>)</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>住所</th>
+      <th>電話番号</th>
+      <th>ファックス</th>
+      <th>Webサイト</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <% @name_cards.each do |name_card| %>
+       <tr>
+         <td><%= name_card.name %></td>
+         <td><%= name_card.address %></td>
+         <td><%= name_card.tel %></td>
+         <td><%= name_card.fax %></td>
+         <td><%= name_card.url %></td>
+         <td>
+           <%= link_to '詳細', company_group_user_name_card_path(@company, @group, @user, @name_cards) %><br/>
+           <%= link_to '編集', edit_company_group_user_name_card_path(@company, @group, @user, @name_cards) %><br/>
+           <%= link_to '削除', company_group_user_name_card_path(@company, @group, @user, @name_cards), method: :delete, data: { confirm: '削除しますか?' } %>
+       </td>
+       </tr>
+     <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '名刺を追加する', new_company_group_user_name_card_path %>
+<%= link_to '社員一覧へ戻る', company_group_users_path %>

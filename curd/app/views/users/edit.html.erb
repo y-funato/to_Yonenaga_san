@@ -1,6 +1,6 @@
-<h1>Editing user</h1>
+<h1>編集する</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', company_group_user_path(@company, @group, @user) %> |
-<%= link_to 'Back', company_group_users_path(@company, @group) %>
+<%= link_to '詳細', company_group_user_path(@company, @group, @user), class:'btn btn-default' %>
+<%= link_to '社員一覧へもどる', company_group_users_path(@company, @group), class:'btn btn-default' %>

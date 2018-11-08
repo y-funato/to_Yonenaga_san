@@ -1,33 +1,33 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>会社名:</strong>
   <%= @company.name %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>住所:</strong>
   <%= @company.address %>
 </p>
 
 <p>
-  <strong>Tel:</strong>
+  <strong>電話番号:</strong>
   <%= @company.tel %>
 </p>
 
 <p>
-  <strong>Fax:</strong>
+  <strong>ファックス:</strong>
   <%= @company.fax %>
 </p>
 
 <p>
-  <strong>Url:</strong>
+  <strong>Webサイト:</strong>
   <%= @company.url %>
 </p>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Group', company_groups_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<%= link_to '編集', edit_company_path(@company), class:'btn btn-default' %>
+<%= link_to '部署一覧へ', company_groups_path(@company), class:'btn btn-default' %>
+<%= link_to '会社一覧へもどる', companies_path, class:'btn btn-default' %>
 
 
 

@@ -18,4 +18,9 @@ class ApplicationController < ActionController::Base
     @user = @group.users.find(user_id)
   end
 
+  #def set_name_card
+  #  name_card_id = params[:name_card] ? params[:name_card_id] : params[:id]
+  #  @name_card = @user.name_cards.find(name_card_id)
+  #end
+
 end

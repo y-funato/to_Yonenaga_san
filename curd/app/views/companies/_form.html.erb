@@ -1,7 +1,7 @@
 <%= form_for(@company) do |f| %>
   <% if @company.errors.any? %>
     <div id="error_exp;anation">
-    <h2><%= pluralize(@company.errors.count, 'error') %>saved</h2>
+    <h2><%= pluralize(@company.errors.count, 'エラー') %>saved</h2>
 
     <ul>
     <% @company.errors.full_messages.each do |msg| %>
@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :会社名 %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :address %><br>
+    <%= f.label :住所 %><br>
     <%= f.text_field :address %>
   </div>
   <div class="field">
-    <%= f.label :tel %><br>
+    <%= f.label :電話番号 %><br>
     <%= f.text_field :tel %>
   </div>
   <div class="field">
-    <%= f.label :fax %><br>
+    <%= f.label :ファックス %><br>
     <%= f.text_field :fax %>
   </div>
   <div class="field">
-    <%= f.label :url %><br>
+    <%= f.label :Webサイト %><br>
     <%= f.text_field :url %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "更新する"%>
   </div>
 <% end %>

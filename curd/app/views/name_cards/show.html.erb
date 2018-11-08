@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>:</strong>
+  <%= @name_card.name %>
+</p>
+<p>
+  <strong>:</strong>
+  <%= @name_card.address %>
+</p>
+<p>
+  <strong>:</strong>
+  <%= @name_card.tel %>
+</p>
+<p>
+  <strong>:</strong>
+  <%= @name_card.fax %>
+</p>
+<p>
+  <strong>:</strong>
+  <%= @name_card.url %>
+</p>
+
+<%= link_to 'Edit', edit_company_group_user_name_card_path(@company, @group, @user, @name_card) %> |
+<%= link_to 'Back', company_group_user_name_cards_path %>
+
+
+
+
+

@@ -1,10 +1,10 @@
-i<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>部署名:</strong>
   <%= @group.name %>
 </p>
 
-<%= link_to 'Edit', edit_company_group_path(@company, @group) %> |
-<%= link_to 'Users', company_group_users_path(@company, @group) %> |
-<%= link_to 'Back', company_groups_path(@company) %>
+<%= link_to '編集', edit_company_group_path(@company, @group), class:'btn btn-default' %>
+<%= link_to '社員一覧', company_group_users_path(@company, @group), class:'btn btn-default' %>
+<%= link_to '部署一覧へ戻る', company_groups_path(@company), class:'btn btn-default' %>

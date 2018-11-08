@@ -1,11 +1,13 @@
-<h1>Listing users</h1>
+<h3><%= @company.name %></h3>
+<h3><%= @group.name %></h3>
+<h1>社員一覧</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Mail</th>
-      <th>Tel</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>電話番号</th>
       <th></th>
     </tr>
   </thead>
@@ -17,9 +19,9 @@
          <td><%= user.mail %></td>
          <td><%= user.tel %></td>
          <td>
-           <%= link_to 'Show', company_group_user_path(@company, @group, user)  %><br />
-           <%= link_to 'Edit', edit_company_group_user_path(@company, @group, user) %><br />
-           <%= link_to 'Destroy', company_group_user_path(@company, @group, user), method: :delete, data: { confirm: '削除しますか？' } %><br />
+           <%= link_to '詳細', company_group_user_path(@company, @group, user), class:'btn btn-default'  %>
+           <%= link_to '編集', edit_company_group_user_path(@company, @group, user), class:'btn btn-default' %>
+           <%= link_to '削除', company_group_user_path(@company, @group, user), method: :delete, data: { confirm: '削除しますか？' }, class:'btn btn-default' %><br />
          </td>
        </tr>
     <% end %>
@@ -28,4 +30,5 @@
 
 <br>
 
-<%= link_to 'New User', new_company_group_user_path(@company, @group) %>
+<%= link_to '社員を追加する', new_company_group_user_path(@company, @group), class:'btn btn-default' %>
+<%= link_to '部署一覧へ戻る',company_groups_path(@company), class:'btn btn-default' %>

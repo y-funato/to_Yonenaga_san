@@ -1,9 +1,10 @@
-<h1>Listing groups</h1>
+<h3><%= @company.name %></h3>
+<h1>部署一覧</h1>
 
-<table>
+<table class="table table-hover" >
   <thead>
     <tr>
-      <th>Name</th>
+      <th>部署名</th>
     </tr>
   </thead>
 
@@ -11,9 +12,9 @@
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
-        <td><%= link_to 'Show', company_group_path(@company, group) %></td>
-        <td><%= link_to 'Edit', edit_company_group_path(@company, group) %></td>
-        <td><%= link_to 'Destroy', company_group_path(@company, group), method: :delete, data: { confirm: '削除してもいいですか?' } %></td>
+        <td><%= link_to '詳細', company_group_path(@company, group), class:'btn btn-default' %></td>
+        <td><%= link_to '編集', edit_company_group_path(@company, group), class:'btn btn-default' %></td>
+        <td><%= link_to '削除', company_group_path(@company, group), method: :delete, data: { confirm: '削除してもいいですか?' }, class:'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -21,4 +22,5 @@
 
 <br>
 
-<%= link_to 'New Group', new_company_group_path(@company) %>
+<%= link_to '部署を追加する', new_company_group_path(@company), class:'btn btn-default' %>
+<%= link_to '会社一覧へ戻る', companies_path, class:'btn btn-default' %>

@@ -1,6 +1,6 @@
-<h1>Editing group</h1>
+<h1>編集画面</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', company_group_path(@company, @group) %> |
-<%= link_to 'Back', company_groups_path(@company, @group) %>
+<%= link_to '詳細', company_group_path(@company, @group), class:'btn btn-default' %>
+<%= link_to '部署一覧へもどる', company_groups_path(@company, @group), class:'btn btn-default' %>
