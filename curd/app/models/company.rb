@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
   has_many :groups
+  has_many :comments
 
   validates :name, presence: true, length: {maximum: 100}
   validates :address, presence: true, length: {maximum: 100}

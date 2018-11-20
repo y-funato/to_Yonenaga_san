@@ -41,6 +41,7 @@ class NameCardsController < ApplicationController
 
   private
 
+
   def set_name_card
     @name_card = @user.name_cards.find(params[:id])
   end

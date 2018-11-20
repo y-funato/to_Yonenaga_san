@@ -10,16 +10,29 @@
   </head>
 
   <body>
+   <div id="wrap">
     <div class="container">
 
-      <ul class="nav nav-tabs">
-        <li role="presentation"><a href="#">sample</a></li>
-        <li role="presentation"><a href="#">sample1</a></li>
-        <li role="presentation"><a href="#">sample2</a></li>
-      </ul>
-     
+      <div>
+        <ul class="nav nav-tabs">
+          <strong><li class="active">名刺管理アプリ</li></strong>
+          <li role="presentation"><a href="#">Link1</a></li>
+          <li role="presentation"><a href="#">Link2</a></li>
+          <li role="presentation"><a href="#">Link3</a></li>
+        </ul>
+      </div>
+
+       
       <%= yield %>
 
     </div>
+   </div>
+
+      <footer class="footer">
+        <div class="container">
+          <p class="text-muted">2018 名刺管理アプリ</p>
+        </div>
+      </footer>
+
   </body>
 </html>

@@ -1,4 +1,5 @@
-<h1>会社一覧</h1>
+<h2>会社一覧</h2>
+
 
 <table class="table table-hover">
   <thead>
@@ -8,6 +9,7 @@
       <th>電話番号</th>
       <th>ファックス</th>
       <th>Webサイト</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -21,10 +23,11 @@
       <td><%= company.address %></td>
       <td><%= company.tel %></td>
       <td><%= company.fax %></td>
-      <td><%= company.url %></td>
-      <td><%= link_to '詳細', company, class:'btn btn-default' %></td>
-      <td><%= link_to '編集', edit_company_path(company), class:'btn btn-default' %></td>
-      <td><%= link_to '削除', company, method: :delete, data: {confirm: '削除しますか?'} , class:'btn btn-default'%></td>
+      <td><%= link_to "#{company.url}", "#{company.url}" %></td>
+      <td><%= link_to '詳細', company, class:'btn btn-default' %>
+          <%= link_to '編集', edit_company_path(company), class:'btn btn-default' %>
+          <%= link_to '削除', company, method: :delete, data: {confirm: '削除しますか?'} , class:'btn btn-default'%>
+          <%= link_to '部署一覧へ', company_groups_path(company), class:'btn btn-default' %></td>
     </tr>
     <% end %>
   </tbody>

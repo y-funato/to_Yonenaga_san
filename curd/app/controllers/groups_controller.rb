@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
    @group = @company.groups.new(group_params)
 
    if @group.save
-     redirect_to [@company, @group], notice: '作成しました'
+     redirect_to [@company, @group], notice: '部署を追加しました'
    else
      render action: 'new'
    end

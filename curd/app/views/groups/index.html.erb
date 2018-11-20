@@ -1,5 +1,4 @@
-<h3><%= @company.name %></h3>
-<h1>部署一覧</h1>
+<h2>部署一覧(<%= @company.name %>)</h2>
 
 <table class="table table-hover" >
   <thead>
@@ -12,9 +11,10 @@
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
-        <td><%= link_to '詳細', company_group_path(@company, group), class:'btn btn-default' %></td>
-        <td><%= link_to '編集', edit_company_group_path(@company, group), class:'btn btn-default' %></td>
-        <td><%= link_to '削除', company_group_path(@company, group), method: :delete, data: { confirm: '削除してもいいですか?' }, class:'btn btn-default' %></td>
+        <td><%= link_to '詳細', company_group_path(@company, group), class:'btn btn-default' %>
+            <%= link_to '編集', edit_company_group_path(@company, group), class:'btn btn-default' %>
+            <%= link_to '削除', company_group_path(@company, group), method: :delete, data: { confirm: '削除してもいいですか?' }, class:'btn btn-default' %>
+             <%= link_to '社員一覧へ', company_group_users_path(@company, group), class:'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>

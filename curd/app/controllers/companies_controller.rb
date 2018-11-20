@@ -20,7 +20,7 @@ def create
   @company = Company.new(company_params)
 
   if @company.save
-    redirect_to @company, notice: 'Company was successfully created.'
+    redirect_to @company, notice: '会社を追加しました'
   else
     render action: 'new'
   end
@@ -28,7 +28,7 @@ end
 
 def update
   if @company.update(company_params)
-    redirect_to @company, notice: 'Company was successfully updated'
+    redirect_to @company, notice: '更新しました'
   else
     render action: 'edit'
   end
@@ -39,12 +39,25 @@ def destroy
   redirect_to companies_url
 end
 
+
+def comment
+  @company_comment = Company.find(params[:id])
+  @comment = Comment.new(comment_params.merge(company_id: @company_comment.id))
+  @comment.save!
+    redirect_to action: :show, notice: '成功'
+  rescue
+    render action: :show, notice: '失敗'
+end
+
+
 private
 
 def company_params
   params.require(:company).permit(:name, :address, :tel, :fax, :url)
 end
 
-
+def comment_params
+  params.require(:comment).permit(:name, :body)
+end
 
 end

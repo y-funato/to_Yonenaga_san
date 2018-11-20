@@ -21,9 +21,9 @@
          <td><%= name_card.fax %></td>
          <td><%= name_card.url %></td>
          <td>
-           <%= link_to '詳細', company_group_user_name_card_path(@company, @group, @user, @name_cards) %><br/>
-           <%= link_to '編集', edit_company_group_user_name_card_path(@company, @group, @user, @name_cards) %><br/>
-           <%= link_to '削除', company_group_user_name_card_path(@company, @group, @user, @name_cards), method: :delete, data: { confirm: '削除しますか?' } %>
+           <%= link_to '詳細', company_group_user_name_card_path(@company, @group, @user, name_card) %><br/>
+           <%= link_to '編集', edit_company_group_user_name_card_path(@company, @group, @user, name_card) %><br/>
+           <%= link_to '削除', company_group_user_name_card_path(@company, @group, @user, name_card), method: :delete, data: { confirm: '削除しますか?' } %>
        </td>
        </tr>
      <% end %>

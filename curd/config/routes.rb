@@ -6,4 +6,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :companies do
+    post :comment, on: :member
+  end
 end

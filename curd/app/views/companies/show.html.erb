@@ -1,29 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>会社名:</strong>
-  <%= @company.name %>
-</p>
 
-<p>
-  <strong>住所:</strong>
-  <%= @company.address %>
-</p>
+<table class="table table-hover">
+  <thead>
+    <th>会社名</th>
+    <th>住所</th>
+    <th>電話番号</th>
+    <th>ファックス</th>
+    <th>Webサイト</th>
+  </thead>
 
-<p>
-  <strong>電話番号:</strong>
-  <%= @company.tel %>
-</p>
+  <tbody>
+    <tr>
+    <td><%= @company.name %></td>
+    <td><%= @company.address %></td>
+    <td><%= @company.tel %></td>
+    <td><%= @company.fax %></td>
+    <td><%= @company.url %></td>
+    </tr>
+  </tbody>
+</table>
 
-<p>
-  <strong>ファックス:</strong>
-  <%= @company.fax %>
-</p>
+<%= form_for Comment.new ,url: comment_company_path(@company) do |f| %>
+<%= f.text_area :body %><br>
+<%= f.submit '投稿' %>
+<% end %>
 
-<p>
-  <strong>Webサイト:</strong>
-  <%= @company.url %>
-</p>
+<br>
+
 
 <%= link_to '編集', edit_company_path(@company), class:'btn btn-default' %>
 <%= link_to '部署一覧へ', company_groups_path(@company), class:'btn btn-default' %>
